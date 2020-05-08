@@ -1,4 +1,7 @@
+let coche_enemigo_3: Sprite = null
+let coche_enemigo_2: Sprite = null
 let matojo2: Sprite = null
+let coche_enemigo_1: Sprite = null
 let matojo1: Sprite = null
 scene.setBackgroundColor(7)
 scene.setBackgroundImage(img`
@@ -164,7 +167,32 @@ c 6 c c 6 7 6 c c 6 7 6 c c 6 c
 `, SpriteKind.Food)
     matojo1.setPosition(165, 10)
     matojo1.setVelocity(-100, 0)
-    pause(Math.randomRange(1500, 3000))
+    pause(Math.randomRange(1000, 3000))
+})
+forever(function () {
+    coche_enemigo_1 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . 6 6 6 6 6 6 6 6 . . . . 
+. . . 6 9 6 6 6 6 6 6 c 6 . . . 
+. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
+. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
+. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
+. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
+. 6 8 b b b 8 b b b b 8 6 6 6 6 
+. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
+. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
+. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
+. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
+. 8 f f f f 8 8 8 8 f f f 8 8 8 
+. . f f f f f 8 8 f f f f f 8 . 
+. . . f f f . . . . f f f f . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    coche_enemigo_1.setPosition(165, 30)
+    coche_enemigo_1.setVelocity(-80, 0)
+    pause(Math.randomRange(500, 3000))
+})
+forever(function () {
     matojo2 = sprites.create(img`
 . . . . . . . c c . . . . . . . 
 . . . . c c c 6 5 c 6 6 . . . . 
@@ -185,5 +213,51 @@ c c c 6 6 6 c 6 6 6 6 7 7 6 6 6
 `, SpriteKind.Food)
     matojo2.setPosition(150, 110)
     matojo2.setVelocity(-100, 0)
+    pause(Math.randomRange(1000, 4000))
+})
+forever(function () {
+    coche_enemigo_2 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . 6 6 6 6 6 6 6 6 . . . . 
+. . . 6 9 6 6 6 6 6 6 c 6 . . . 
+. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
+. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
+. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
+. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
+. 6 8 b b b 8 b b b b 8 6 6 6 6 
+. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
+. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
+. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
+. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
+. 8 f f f f 8 8 8 8 f f f 8 8 8 
+. . f f f f f 8 8 f f f f f 8 . 
+. . . f f f . . . . f f f f . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    coche_enemigo_2.setPosition(165, 90)
+    coche_enemigo_2.setVelocity(-80, 0)
+    pause(Math.randomRange(1500, 3000))
+})
+forever(function () {
+    coche_enemigo_3 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . 3 3 3 3 3 3 3 3 . . . . 
+. . . 3 d 3 3 3 3 3 3 c 3 . . . 
+. . 3 c d 3 3 3 3 3 3 c c 3 . . 
+. 3 c c d d d d d d 3 c c d 3 d 
+. 3 c 3 a a a a a a a b c d 3 3 
+. 3 3 a b b a b b b a a b d 3 3 
+. 3 a b b b a b b b b a 3 3 3 3 
+. a a 3 3 3 a 3 3 3 3 3 a 3 3 3 
+. a a a a a a f a a a f a 3 d d 
+. a a a a a a f a a f a a a 3 d 
+. a a a a a a f f f a a a a a a 
+. a f f f f a a a a f f f a a a 
+. . f f f f f a a f f f f f a . 
+. . . f f f . . . . f f f f . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    coche_enemigo_3.setPosition(165, 60)
+    coche_enemigo_3.setVelocity(-80, 0)
     pause(Math.randomRange(1500, 3000))
 })
