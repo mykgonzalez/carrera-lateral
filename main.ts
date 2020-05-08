@@ -1,8 +1,40 @@
-let coche_enemigo_3: Sprite = null
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    mi_coche.startEffect(effects.fire, 500)
+})
 let coche_enemigo_2: Sprite = null
-let matojo2: Sprite = null
 let coche_enemigo_1: Sprite = null
+let coche_enemigo_3: Sprite = null
+let matojo2: Sprite = null
 let matojo1: Sprite = null
+let mi_coche: Sprite = null
+game.setDialogFrame(img`
+. . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . . 
+. 9 9 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 9 9 . 
+9 9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 
+9 9 6 6 6 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6 6 6 9 9 
+. 9 9 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 9 9 . 
+. . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . . 
+`)
+game.showLongText("Esquiva los coches!", DialogLayout.Top)
 scene.setBackgroundColor(7)
 scene.setBackgroundImage(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -126,7 +158,9 @@ b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `)
-let mi_coche = sprites.create(img`
+info.setScore(0)
+info.setLife(3)
+mi_coche = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . 2 2 2 2 2 2 2 2 . . . . 
 . . . 2 4 2 2 2 2 2 2 c 2 . . . 
@@ -146,6 +180,9 @@ let mi_coche = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(mi_coche)
 mi_coche.setFlag(SpriteFlag.StayInScreen, true)
+game.onUpdateInterval(100, function () {
+    info.changeScoreBy(1)
+})
 forever(function () {
     matojo1 = sprites.create(img`
 . . . . . . 6 6 6 6 . . . . . . 
@@ -168,29 +205,6 @@ c 6 c c 6 7 6 c c 6 7 6 c c 6 c
     matojo1.setPosition(165, 10)
     matojo1.setVelocity(-100, 0)
     pause(Math.randomRange(1000, 3000))
-})
-forever(function () {
-    coche_enemigo_1 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . 6 6 6 6 6 6 6 6 . . . . 
-. . . 6 9 6 6 6 6 6 6 c 6 . . . 
-. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
-. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
-. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
-. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
-. 6 8 b b b 8 b b b b 8 6 6 6 6 
-. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
-. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
-. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
-. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
-. 8 f f f f 8 8 8 8 f f f 8 8 8 
-. . f f f f f 8 8 f f f f f 8 . 
-. . . f f f . . . . f f f f . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-    coche_enemigo_1.setPosition(165, 30)
-    coche_enemigo_1.setVelocity(-80, 0)
-    pause(Math.randomRange(500, 3000))
 })
 forever(function () {
     matojo2 = sprites.create(img`
@@ -216,29 +230,6 @@ c c c 6 6 6 c 6 6 6 6 7 7 6 6 6
     pause(Math.randomRange(1000, 4000))
 })
 forever(function () {
-    coche_enemigo_2 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . 6 6 6 6 6 6 6 6 . . . . 
-. . . 6 9 6 6 6 6 6 6 c 6 . . . 
-. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
-. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
-. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
-. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
-. 6 8 b b b 8 b b b b 8 6 6 6 6 
-. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
-. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
-. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
-. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
-. 8 f f f f 8 8 8 8 f f f 8 8 8 
-. . f f f f f 8 8 f f f f f 8 . 
-. . . f f f . . . . f f f f . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-    coche_enemigo_2.setPosition(165, 90)
-    coche_enemigo_2.setVelocity(-80, 0)
-    pause(Math.randomRange(1500, 3000))
-})
-forever(function () {
     coche_enemigo_3 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . 3 3 3 3 3 3 3 3 . . . . 
@@ -259,5 +250,51 @@ forever(function () {
 `, SpriteKind.Enemy)
     coche_enemigo_3.setPosition(165, 60)
     coche_enemigo_3.setVelocity(-80, 0)
+    pause(Math.randomRange(1500, 3000))
+})
+forever(function () {
+    coche_enemigo_1 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . 6 6 6 6 6 6 6 6 . . . . 
+. . . 6 9 6 6 6 6 6 6 c 6 . . . 
+. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
+. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
+. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
+. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
+. 6 8 b b b 8 b b b b 8 6 6 6 6 
+. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
+. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
+. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
+. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
+. 8 f f f f 8 8 8 8 f f f 8 8 8 
+. . f f f f f 8 8 f f f f f 8 . 
+. . . f f f . . . . f f f f . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    coche_enemigo_1.setPosition(165, 30)
+    coche_enemigo_1.setVelocity(-100, 0)
+    pause(Math.randomRange(500, 3000))
+})
+forever(function () {
+    coche_enemigo_2 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . 6 6 6 6 6 6 6 6 . . . . 
+. . . 6 9 6 6 6 6 6 6 c 6 . . . 
+. . 6 c 9 6 6 6 6 6 6 c c 6 . . 
+. 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
+. 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
+. 6 6 8 b b 8 b b b 8 8 b 9 6 6 
+. 6 8 b b b 8 b b b b 8 6 6 6 6 
+. 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
+. 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
+. 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
+. 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
+. 8 f f f f 8 8 8 8 f f f 8 8 8 
+. . f f f f f 8 8 f f f f f 8 . 
+. . . f f f . . . . f f f f . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    coche_enemigo_2.setPosition(165, 90)
+    coche_enemigo_2.setVelocity(-120, 0)
     pause(Math.randomRange(1500, 3000))
 })
